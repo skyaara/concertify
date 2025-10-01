@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 
-export function ChorusTest() {
+export function ChorusEffectDebugger() {
 	const [audioBuffer, setAudioBuffer] = useState<AudioBuffer | null>(null);
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [numSingers, setNumSingers] = useState(4);
@@ -59,9 +59,10 @@ export function ChorusTest() {
 	const updateDelayBetween = (value: number) => {
 		setDelayBetween(value);
 		if (delayNodesRef.current.length > 0 && audioContextRef.current) {
+			const audioContext = audioContextRef.current;
 			delayNodesRef.current.forEach((delay, i) => {
 				const delayTime = (value / 1000) * (i + 1);
-				delay.delayTime.setValueAtTime(delayTime, audioContextRef.current?.currentTime);
+				delay.delayTime.setValueAtTime(delayTime, audioContext.currentTime);
 			});
 		}
 	};
@@ -146,7 +147,7 @@ export function ChorusTest() {
 			<div className="max-w-2xl mx-auto space-y-6">
 				<Card>
 					<CardHeader>
-						<CardTitle>Chorus Effect Test</CardTitle>
+						<CardTitle>Chorus Effect Debugger</CardTitle>
 						<CardDescription>Debug page to test the crowd singing effect in isolation</CardDescription>
 					</CardHeader>
 					<CardContent className="space-y-6">

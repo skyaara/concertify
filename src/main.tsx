@@ -1,10 +1,11 @@
+import { RouterProvider } from "@tanstack/react-router";
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 
 import "./styles.css";
 
-import App from "./App.tsx";
 import { ThemeProvider } from "./components/ThemeProvider.tsx";
+import { router } from "./router.tsx";
 
 const rootElement = document.getElementById("app");
 if (rootElement && !rootElement.innerHTML) {
@@ -12,7 +13,7 @@ if (rootElement && !rootElement.innerHTML) {
 	root.render(
 		<StrictMode>
 			<ThemeProvider defaultTheme="dark" storageKey="concertify-ui-theme">
-				<App />
+				<RouterProvider router={router} />
 			</ThemeProvider>
 		</StrictMode>,
 	);

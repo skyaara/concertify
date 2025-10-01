@@ -5,10 +5,6 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
 	plugins: [viteReact(), tailwindcss()],
-	test: {
-		globals: true,
-		environment: "jsdom",
-	},
 	resolve: {
 		alias: {
 			"@": resolve(__dirname, "./src"),
