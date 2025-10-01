@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useTheme } from "./ThemeProvider";
 
 interface WaveformProps {
 	audioBuffer: AudioBuffer | null;
@@ -10,6 +11,7 @@ interface WaveformProps {
 export function Waveform({ audioBuffer, currentTime, duration, onChannelToggle }: WaveformProps) {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const [channelStates, setChannelStates] = useState<boolean[]>([]);
+	const { theme } = useTheme();
 
 	const safeCurrentTime = React.useMemo(() => {
 		if (typeof currentTime === "number") return currentTime;
@@ -185,8 +187,16 @@ export function Waveform({ audioBuffer, currentTime, duration, onChannelToggle }
 				const checkboxX = 8;
 				const checkboxY = labelY - 2;
 
-				// Checkbox border
-				ctx.strokeStyle = isChannelEnabled ? "rgba(255, 255, 255, 0.7)" : "rgba(255, 255, 255, 0.3)";
+				// Checkbox border - theme-aware color
+				const borderColor =
+					theme === "light"
+						? isChannelEnabled
+							? "rgba(0, 0, 0, 0.7)"
+							: "rgba(0, 0, 0, 0.3)"
+						: isChannelEnabled
+							? "rgba(255, 255, 255, 0.7)"
+							: "rgba(255, 255, 255, 0.3)";
+				ctx.strokeStyle = borderColor;
 				ctx.lineWidth = 1;
 				ctx.strokeRect(checkboxX, checkboxY, checkboxSize, checkboxSize);
 
@@ -196,8 +206,16 @@ export function Waveform({ audioBuffer, currentTime, duration, onChannelToggle }
 					ctx.fillRect(checkboxX + 1, checkboxY + 1, checkboxSize - 2, checkboxSize - 2);
 				}
 
-				// Label text
-				ctx.fillStyle = isChannelEnabled ? "rgba(255, 255, 255, 0.7)" : "rgba(255, 255, 255, 0.3)";
+				// Label text - theme-aware color
+				const textColor =
+					theme === "light"
+						? isChannelEnabled
+							? "rgba(0, 0, 0, 0.7)"
+							: "rgba(0, 0, 0, 0.3)"
+						: isChannelEnabled
+							? "rgba(255, 255, 255, 0.7)"
+							: "rgba(255, 255, 255, 0.3)";
+				ctx.fillStyle = textColor;
 				ctx.fillText(label, checkboxX + checkboxSize + 6, labelY);
 			}
 		}
@@ -212,7 +230,7 @@ export function Waveform({ audioBuffer, currentTime, duration, onChannelToggle }
 			ctx.lineTo(progress, height);
 			ctx.stroke();
 		}
-	}, [audioBuffer, safeCurrentTime, safeDuration, channelStates]);
+	}, [audioBuffer, safeCurrentTime, safeDuration, channelStates, theme]);
 
 	const handleCanvasClick = (event: React.MouseEvent<HTMLCanvasElement>) => {
 		if (!audioBuffer || !canvasRef.current) return;
