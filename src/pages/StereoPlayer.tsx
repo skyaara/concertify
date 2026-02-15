@@ -336,14 +336,14 @@ export function StereoPlayer() {
 					<div className="flex justify-center gap-3 md:gap-4 mt-4 md:mt-6">
 						<Link
 							to="/"
-							className="flex items-center gap-2 px-4 py-2 border border-input bg-background text-foreground rounded-md hover:bg-accent transition-colors"
+							className="flex items-center justify-center gap-2 px-4 py-2 border border-input bg-background text-foreground rounded-md hover:bg-accent transition-colors"
 						>
 							<Music className="w-4 h-4" />
 							Audio Effects
 						</Link>
 						<Link
 							to="/stereo-player"
-							className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
+							className="flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
 						>
 							<Upload className="w-4 h-4" />
 							Stereo Player
@@ -399,7 +399,6 @@ export function StereoPlayer() {
 												onClick={() => handleChannelPlayPause("left")}
 												variant="outline"
 												size="sm"
-												className="flex items-center gap-2"
 												disabled={!state.leftAudioLoaded}
 											>
 												{state.leftPlaying ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
@@ -471,7 +470,6 @@ export function StereoPlayer() {
 												onClick={() => handleChannelPlayPause("right")}
 												variant="outline"
 												size="sm"
-												className="flex items-center gap-2"
 												disabled={!state.rightAudioLoaded}
 											>
 												{state.rightPlaying ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
@@ -508,23 +506,17 @@ export function StereoPlayer() {
 							<Button
 								onClick={handlePlay}
 								disabled={state.isPlaying || (!state.leftAudioLoaded && !state.rightAudioLoaded)}
-								className="flex items-center gap-2"
 							>
 								<Play className="w-4 h-4" />
 								Play
 							</Button>
 
-							<Button
-								onClick={handlePause}
-								disabled={!state.isPlaying}
-								variant="outline"
-								className="flex items-center gap-2"
-							>
+							<Button onClick={handlePause} disabled={!state.isPlaying} variant="outline">
 								<Pause className="w-4 h-4" />
 								Pause
 							</Button>
 
-							<Button onClick={handleStop} variant="outline" className="flex items-center gap-2">
+							<Button onClick={handleStop} variant="outline">
 								<Square className="w-4 h-4" />
 								Stop
 							</Button>

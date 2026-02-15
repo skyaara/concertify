@@ -154,7 +154,7 @@ export function ChorusEffectDebugger() {
 						<div className="space-y-2">
 							<input ref={fileInputRef} type="file" accept="audio/*" onChange={handleFileUpload} className="hidden" />
 							<Button onClick={() => fileInputRef.current?.click()} className="w-full">
-								<Upload className="w-4 h-4 mr-2" />
+								<Upload className="w-4 h-4" />
 								Upload Test Audio
 							</Button>
 						</div>
@@ -165,12 +165,12 @@ export function ChorusEffectDebugger() {
 									<div className="flex gap-2">
 										{!isPlaying ? (
 											<Button onClick={handlePlay} className="flex-1">
-												<Play className="w-4 h-4 mr-2" />
+												<Play className="w-4 h-4" />
 												Play with Chorus
 											</Button>
 										) : (
 											<Button onClick={handlePause} variant="secondary" className="flex-1">
-												<Pause className="w-4 h-4 mr-2" />
+												<Pause className="w-4 h-4" />
 												Stop
 											</Button>
 										)}

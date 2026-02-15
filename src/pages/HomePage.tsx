@@ -67,14 +67,14 @@ export function HomePage() {
 					<div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4 mt-4 md:mt-6">
 						<Link
 							to="/"
-							className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
+							className="flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
 						>
 							<Music className="w-4 h-4" />
 							Audio Effects
 						</Link>
 						<Link
 							to="/stereo-player"
-							className="flex items-center gap-2 px-4 py-2 border border-input bg-background text-foreground rounded-md hover:bg-accent transition-colors"
+							className="flex items-center justify-center gap-2 px-4 py-2 border border-input bg-background text-foreground rounded-md hover:bg-accent transition-colors"
 						>
 							<Upload className="w-4 h-4" />
 							Stereo Player
